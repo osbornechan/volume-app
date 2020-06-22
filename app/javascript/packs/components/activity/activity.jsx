@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import styles from './styles.scss';
+import styles from './styles.css';
 import axios from 'axios';
 
 export default class Activity extends Component {
