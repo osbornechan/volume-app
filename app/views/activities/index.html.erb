@@ -1,0 +1,59 @@
+<nav class="navbar navbar-dark">
+    <a href='/activities' class='nav-image'><%= image_tag('volume.png') %></a>
+    <h2>Activities</h2>
+    <% if volunteer_signed_in? %>
+        <div class='logout'>
+            <h5>Welcome, <strong><%= current_volunteer.email.split('@')[0].capitalize! %></strong></h5>
+            <%= link_to 'PROFILE', profile_path, class: "nav-button" %>
+            <%= link_to 'LOG OUT', destroy_volunteer_session_url, method: :delete, class: "nav-button-logout" %>
+        </div>
+    <% elsif organiser_signed_in? %>
+        <div class='logout'>
+            <h5>Welcome, <strong><%= current_organiser.email.split('@')[0].upcase! %></strong></h5>
+            <%= link_to 'LOG OUT', destroy_organiser_session_url, method: :delete, class: "nav-button-logout" %>
+        </div>
+    <% end %>
+</nav>
+
+<% if current_volunteer %>
+    <%= javascript_pack_tag 'hello_react' %>
+
+<% elsif current_organiser %>
+        <div>
+            <br/>
+            <div class='sort'>
+                <h5><em>Sort</em></h5>
+                <%= link_to "Date", activities_path(sort_by: "date"), class: 'sort-btn' %>
+                <%= link_to "Title", activities_path(sort_by: "title"), class: 'sort-btn' %>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">S/N</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Volunteers</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @activities.each_with_index do |activity, index| %>
+                        <tr>
+                            <td><%= index+1 %></td>
+                            <td><%= link_to activity.title, activity_path(activity) %></td>
+                            <td><%= activity.date %></td>
+                            <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
+                            <td><%= link_to "Delete", activity_path(activity), method: :delete %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <br/>
+            <div class='new-activity'>
+                <%= link_to 'New Activity', new_activity_path, class:'new-activity-btn' %>
+            </div>
+        </div>
+<% end %>
+
+<%= stylesheet_link_tag "activities" %>

@@ -1,0 +1,54 @@
+<%= form_with(model: activity, local: true) do |form| %>
+  <% if activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+
+      <ul>
+        <% activity.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.text_field :date, placeholder:"YYYY-MM-DD" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.collection_select :category_id, @categories, :id, :category, include_blank:true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Volunteer_requirements %>
+    <%= form.text_area :requirements, placeholder:"e.g. Fluent in Mother Tongue/ Experience with pets \nIf no requirements, enter 'None'" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Required_volunteers %>
+    <%= form.number_field :total_volunteer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :img_url, placeholder:"Enter image URL" %>
+  </div>
+  <br/>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= stylesheet_link_tag "form" %> 

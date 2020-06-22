@@ -1,0 +1,18 @@
+<nav class="navbar navbar-dark">
+    <a href='/activities' class='nav-image'><%= image_tag('volume.png') %></a>
+    <h2>New Activity</h2>
+    <% if organiser_signed_in? %>
+    <div class='logout'>
+        <h5>Welcome, <strong><%= current_organiser.email.split('@')[0].capitalize! %></strong></h5>
+        <%= link_to 'PROFILE', profile_path, class: "nav-button-logout" %>
+        <%= link_to 'LOG OUT', destroy_organiser_session_url, method: :delete, class: "nav-button" %>
+    </div>
+    <% end %>
+</nav>
+<br/>
+<div class='sort'>  
+    <p><strong>< </strong>&nbsp; <%= link_to 'Back to previous', activities_path %><p>
+</div>
+<%= render 'form', activity: @activity %>
+
+<%= stylesheet_link_tag "activities" %>

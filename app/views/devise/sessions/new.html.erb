@@ -1,0 +1,82 @@
+<% if current_page?(new_organiser_session_path) %>
+  <div class='container'>
+      <div class='left-col text-center'>
+          <a href='/'><%= image_tag("volume.png") %></a>
+          <br/>
+          <h5>What is 
+              <span id='you'><strong>Your</strong></span>
+              capacity?
+          </h5>
+      </div>
+
+      <div class='right-col'>
+          <h2 class='organiser'>Organiser Login</h2>
+
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+            </div>
+
+            <div class="field">
+              <%= f.password_field :password, autocomplete: "current-password", placeholder:'Password' %>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end %>
+            <br/>
+            <div class="actions">
+              <%= f.submit "Log in" %>
+            </div>
+          <% end %>
+          <br/>
+          <%= render "devise/shared/links" %>
+      </div>
+  </div>
+
+  <%= stylesheet_link_tag "organiser_login" %>
+
+<% elsif current_page?(new_volunteer_session_path) %>
+  <div class='container'>
+    <div class='left-col text-center'>
+        <a href='/'><%= image_tag("volume.png") %></a>
+        <br/>
+        <h5>What is 
+            <span id='me'><strong>My</strong></span>
+            capacity?
+        </h5>
+    </div>
+
+    <div class='right-col'>
+      <h2 class='volunteer'>Volunteer Login</h2>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+        </div>
+
+        <div class="field">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder:'Password' %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+        <br/>
+        <div class="actions">
+          <%= f.submit "Log in" %>
+        </div>
+      <% end %>
+      <br/>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div> 
+
+  <%= stylesheet_link_tag "volunteer_login" %>
+<% end %>

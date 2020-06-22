@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  requirements: MyText
+  date: MyText
+  volunteer_count: 1
+  img_url: MyString
+
+two:
+  title: MyString
+  description: MyString
+  requirements: MyText
+  date: MyText
+  volunteer_count: 1
+  img_url: MyString

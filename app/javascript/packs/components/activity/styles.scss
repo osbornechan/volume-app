@@ -1,0 +1,75 @@
+.card-text.description {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    padding: 15px 0;
+}
+
+td {
+    line-height: 1.5rem;
+    padding: 8px;
+}
+
+.header-col{
+    padding-right: 30px;
+}
+
+.row{
+    display: flex;
+    justify-content: space-around;
+}
+
+.sort {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.sort h5{
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+button.sort-btn {
+    background-color: white;
+    border: none;
+    border-left: 1px dashed grey;
+    padding: 0 10px 0 60px;
+    font-weight: 600;
+}
+
+button.sort-btn:hover{
+    text-decoration: none;
+    color: #F9D758;
+    font-weight: 600;
+}
+
+.mb-3 {
+    width: 50%;
+    height:100%;
+}
+
+.card {
+    background-color: white;
+}
+
+button {
+    margin-right: 10px;
+}
+
+a.contact {
+    color: white;
+}
+
+a.contact:hover {
+    color: white;
+}
+
+button:hover{
+    color: white;
+    text-decoration: none;
+}

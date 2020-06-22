@@ -1,0 +1,76 @@
+<nav class="navbar navbar-dark">
+    <a href='/activities' class='nav-image'><%= image_tag('volume.png') %></a>
+    <h2><%= @activity.title %></h2>
+    <% if organiser_signed_in? %>
+    <div class='logout'>
+        <h5>Welcome, <strong><%= current_organiser.email.split('@')[0].upcase! %></strong></h5>
+        <%= link_to 'LOG OUT', destroy_organiser_session_url, method: :delete, class: "nav-button-logout" %>
+    </div>
+    <% end %>
+</nav>
+<br/>
+
+<div class='sort back-bar'>  
+    <p><strong>< </strong>&nbsp; <%= link_to 'Back to previous', activities_path %><p>
+    <%= link_to 'Edit Activity', edit_activity_path(@activity) %>
+</div>
+
+<div class='row justify-content'>
+  <div class='col-4 image-col'>
+    <%= image_tag(@activity.img_url, class:'show-img') %>
+  </div>
+  <div class='col-8'>
+    <table>
+      <tbody>
+        <tr>
+          <td class='header-col'><strong>Date</strong></td>
+          <td><%= @activity.date %></td>
+        </tr>
+        <tr>
+          <td class='header-col'><strong>Description</strong></td>
+          <td><%= @activity.description %></td>
+        </tr>
+        <tr>
+          <td class='header-col'><strong>Category</strong></td>
+          <td><%= @activity.category.category %></td>
+        </tr>
+        <tr>
+          <td class='header-col'><strong>Requirements</strong></td>
+          <td><%= @activity.requirements %></td>
+        </tr>
+        <tr>
+          <td class='header-col'><strong>Volunteers</strong></td>
+          <td><%= @participations.distinct.count %> / <%= @activity.total_volunteer%></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br/><br/>
+<% if @participations.length != 0 %>
+  <h3 class='text-center'><strong>Volunteer Details</strong></h3>
+  <br/>
+  <table class='volunteer-list'>
+    <thead>
+      <tr>
+        <th scope="col">S/N</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @participations.each_with_index do |participant, index| %>
+        <% @email = 'mailto:' + participant.volunteer.email %>
+        <tr>
+          <td><%= index+1 %></td>
+          <td><%= participant.volunteer.email.split('@')[0].capitalize! %></td>
+          <td><%= participant.volunteer.email %></td>
+          <td><%= link_to 'Contact', @email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <table>
+<% end %>
+
+<%= stylesheet_link_tag "activities" %>

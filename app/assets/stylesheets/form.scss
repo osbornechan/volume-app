@@ -1,0 +1,28 @@
+.field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+input, textarea, select {
+    border: none;
+    width: 80%;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+textarea {
+    height: 100px;
+}
+
+label {
+    font-weight: 600;
+}
+
+input[type=submit] {
+    width: 100%;
+    color: white;
+    background-color: navy;
+    border: 1px solid gainsboro;
+}

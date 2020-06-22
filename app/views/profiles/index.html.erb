@@ -1,0 +1,49 @@
+<nav class="navbar navbar-dark">
+    <a href='/activities' class='nav-image'><%= image_tag('volume.png') %></a>
+    <h2>Your Activities</h2>
+    <% if volunteer_signed_in? %>
+        <div class='logout'>
+            <h5>Welcome, <strong><%= current_volunteer.email.split('@')[0].capitalize! %></strong></h5>
+            <%= link_to 'PROFILE', profile_path, class: "nav-button" %>
+            <%= link_to 'LOG OUT', destroy_volunteer_session_url, method: :delete, class: "nav-button-logout" %>
+        </div>
+    <% end %>
+</nav>
+<br/>
+
+<div class='sort back-bar'>  
+    <p><strong>< </strong>&nbsp; <%= link_to 'Back to previous', activities_path %><p>
+</div>
+
+<% @participation.each do |participant| %>
+    <div class='row justify-content'>
+        <div class='col-4 image-col'>
+            <%= image_tag(participant.activity.img_url, class:'show-img') %>
+        </div>
+        <div class='col-8'>
+            <table>
+            <tbody>
+                <tr>
+                <td class='header-col'><strong>Title</strong></td>
+                <td><strong><%= participant.activity.title %></strong></td>
+                </tr>
+                <tr>
+                <td class='header-col'><strong>Date</strong></td>
+                <td><%= participant.activity.date %></td>
+                </tr>
+                <tr>
+                <td class='header-col'><strong>Description</strong></td>
+                <td><%= participant.activity.description %></td>
+                </tr>
+                <tr>
+                <td class='header-col'><strong>Requirements</strong></td>
+                <td><%= participant.activity.requirements %></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+    <br/>
+<% end %>
+
+<%= stylesheet_link_tag "activities" %>
